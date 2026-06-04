@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Freelancer's Command Center — Notion CRM & Project Tracker</title>
+  <meta name="description" content="One Notion workspace to manage every client, project, invoice, and hour. Built for freelancers. One-time $19." />
+  <meta property="og:title" content="The Freelancer's Command Center" />
+  <meta property="og:description" content="Stop managing your freelance business across 6 tools. One Notion workspace for clients, projects, invoices, and time." />
+  <meta property="og:type" content="website" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --bg2: #16161e;
+      --bg3: #1e1e2a;
+      --border: #2a2a3a;
+      --accent: #6c63ff;
+      --accent2: #a78bfa;
+      --text: #e8e8f0;
+      --muted: #888898;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --red: #f87171;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(15,15,19,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .nav-logo { font-weight: 700; font-size: 1rem; color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: white;
+      padding: 0.55rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.15);
+      color: var(--accent2);
+      border: 1px solid rgba(108,99,255,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--accent2); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: opacity 0.2s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent2); }
+    .price-note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .price-note s { color: #555; }
+    .price-note strong { color: var(--green); }
+
+    /* MOCKUP */
+    .mockup-container {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      padding: 0 2rem;
+    }
+    .mockup {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+    .mockup-bar {
+      background: var(--bg3);
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+    .mockup-content { padding: 2rem; }
+
+    /* Dashboard mockup */
+    .dash-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .dash-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .stat-value { font-size: 1.5rem; font-weight: 700; }
+    .stat-value.green { color: var(--green); }
+    .stat-value.yellow { color: var(--yellow); }
+    .stat-value.red { color: var(--red); }
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .dash-panel {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .panel-header { font-size: 0.8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+    .client-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .client-row:last-child { border-bottom: none; }
+    .tag {
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .tag-green { background: rgba(52,211,153,0.15); color: var(--green); }
+    .tag-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); }
+    .tag-red { background: rgba(248,113,113,0.15); color: var(--red); }
+    .tag-purple { background: rgba(167,139,250,0.15); color: var(--accent2); }
+
+    /* SOCIAL PROOF */
+    .social-proof {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .social-proof p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 700px) { .testimonials { grid-template-columns: 1fr; } }
+    .testimonial {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      text-align: left;
+    }
+    .testimonial p { font-size: 0.9rem; color: var(--text); margin-bottom: 1rem; font-style: italic; }
+    .testimonial-meta { font-size: 0.78rem; color: var(--muted); }
+    .testimonial-meta strong { color: var(--text); display: block; }
+    .stars { color: var(--yellow); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+    /* FEATURES */
+    .section {
+      max-width: 900px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+    }
+    .section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-intro { color: var(--muted); font-size: 1rem; max-width: 600px; margin-bottom: 3rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(108,99,255,0.5); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* WHAT'S INCLUDED */
+    .includes {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .includes h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .includes-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    @media (max-width: 600px) { .includes-list { grid-template-columns: 1fr; } }
+    .include-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+    }
+    .check { color: var(--green); font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* COMPARISON */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .comparison-table th {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr.highlight-row { background: rgba(108,99,255,0.08); }
+    .comparison-table .highlight-row td:first-child { font-weight: 700; color: var(--accent2); }
+
+    /* PRICING */
+    .pricing-card {
+      background: var(--bg2);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 480px;
+      margin: 2rem auto 0;
+      text-align: center;
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .pricing-price {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 0.5rem 0 0.3rem;
+    }
+    .pricing-price span { font-size: 1.8rem; vertical-align: top; margin-top: 0.6rem; display: inline-block; }
+    .pricing-was { color: var(--muted); font-size: 0.9rem; text-decoration: line-through; margin-bottom: 0.3rem; }
+    .pricing-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .pricing-features { text-align: left; margin-bottom: 2rem; }
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-feature:last-child { border-bottom: none; }
+    .guarantee {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .faq-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 1.2rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-a {
+      padding: 0 1.4rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-arrow { transition: transform 0.2s; font-size: 0.75rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .dash-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🧠 Freelancer's Command Center</div>
+  <div style="display:flex; gap:1rem; align-items:center;">
+    <a href="#free" style="color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500;">Free template</a>
+    <a href="blog/best-notion-templates-for-freelancers.html" style="color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500;">Blog</a>
+    <a href="#pricing" class="nav-cta">Get it — $12</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Notion Template · One-time payment</div>
+  <h1>Stop managing your freelance business across <span>6 different tools.</span></h1>
+  <p>One Notion workspace for every client, project, invoice, and hour. Built for freelancers who are tired of spreadsheet chaos.</p>
+  <div class="hero-cta-group">
+    <a href="YOUR_GUMROAD_LINK_HERE" class="btn-primary">
+      Get instant access →
+    </a>
+    <a href="#features" class="btn-secondary">See what's inside</a>
+  </div>
+  <p class="price-note"><s>Regular price $19</s> → <strong>Launch price $12</strong> · Notion free plan works fine</p>
+</section>
+
+<!-- DASHBOARD MOCKUP -->
+<div class="mockup-container">
+  <div class="mockup">
+    <div class="mockup-bar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    <div class="mockup-content">
+      <div class="dash-title">📊 Dashboard</div>
+      <div class="dash-sub">Wednesday, June 4, 2026</div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Active Clients</div>
+          <div class="stat-value">4</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Projects Live</div>
+          <div class="stat-value">6</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Revenue (MTD)</div>
+          <div class="stat-value green">$8,400</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Unpaid</div>
+          <div class="stat-value red">$2,100</div>
+        </div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-panel">
+          <div class="panel-header">Active Clients</div>
+          <div class="client-row">
+            <span>Acme Studios</span>
+            <span class="tag tag-green">Active</span>
+          </div>
+          <div class="client-row">
+            <span>Bright Copy Co.</span>
+            <span class="tag tag-green">Active</span>
+          </div>
+          <div class="client-row">
+            <span>TechFlow Inc.</span>
+            <span class="tag tag-yellow">Review</span>
+          </div>
+          <div class="client-row">
+            <span>Nova Media</span>
+            <span class="tag tag-purple">Lead</span>
+          </div>
+        </div>
+        <div class="dash-panel">
+          <div class="panel-header">Outstanding Invoices</div>
+          <div class="client-row">
+            <span>INV-004 · Bright Copy</span>
+            <span class="tag tag-red">Overdue</span>
+          </div>
+          <div class="client-row">
+            <span>INV-002 · Acme Studios</span>
+            <span class="tag tag-yellow">Sent</span>
+          </div>
+          <div class="client-row">
+            <span>INV-006 · TechFlow</span>
+            <span class="tag tag-yellow">Draft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF PLACEHOLDER -->
+<section class="social-proof">
+  <p>⭐⭐⭐⭐⭐ &nbsp; Early access reviews</p>
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"This replaced my Trello + Airtable setup. Everything's connected — I can see a client's projects and unpaid invoices in one view. Took 10 minutes to set up."</p>
+      <div class="testimonial-meta">
+        <strong>Sarah K.</strong>
+        Freelance UX Designer
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"The invoice tracker alone is worth it. I used to have unpaid invoices slip through for weeks. Now I see exactly what's outstanding every time I open Notion."</p>
+      <div class="testimonial-meta">
+        <strong>Marcus D.</strong>
+        Freelance Developer
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"I was skeptical of another all-in-one system but this one actually works. The sample data shows you exactly how to use it — up and running in under 15 minutes."</p>
+      <div class="testimonial-meta">
+        <strong>Priya M.</strong>
+        Freelance Copywriter
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">What's inside</div>
+  <h2>8 pages. All connected. Zero subscriptions.</h2>
+  <p class="section-intro">Every page links to every other page. Change a client's status and it updates across projects, invoices, and the dashboard automatically.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">👤</div>
+      <h3>Client CRM</h3>
+      <p>Track every client: status, contact info, total revenue earned, and links to all their projects and invoices. Know at a glance who's active, paused, or overdue.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📁</div>
+      <h3>Project Tracker</h3>
+      <p>Manage projects with status, due dates, budgets, and a kanban board. Overdue projects surface automatically. Linked to clients so nothing is orphaned.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <h3>Task Manager</h3>
+      <p>Break any project into tasks. Filter by due this week, by priority, or by client. One-click kanban board to move tasks through your workflow.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Invoice Tracker</h3>
+      <p>Log every invoice. See what's paid, sent, overdue, or in draft. Monthly revenue view. Never wonder again whether a client has paid you.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <h3>Time Log</h3>
+      <p>Track billable hours by project. See exactly how many hours you've worked and how many are billable. Linked directly to projects and clients.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Dashboard</h3>
+      <p>One view that shows active clients, live projects, overdue invoices, and this week's tasks — all at once. Your daily starting point.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h3>Meeting Notes Template</h3>
+      <p>Structured template for every client call: agenda, discussion notes, action items, and follow-up deadlines. One click to create a new entry.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Client Onboarding Checklist</h3>
+      <p>Never forget a step when landing a new client. Contract, deposit, kickoff call, project setup — all in one reusable checklist.</p>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="includes">
+    <h3>Every purchase includes:</h3>
+    <div class="includes-list">
+      <div class="include-item"><span class="check">✓</span> All 8 pages, fully linked and ready to use</div>
+      <div class="include-item"><span class="check">✓</span> Pre-filled with sample data so you see how it works</div>
+      <div class="include-item"><span class="check">✓</span> Start Here guide with 3-step setup</div>
+      <div class="include-item"><span class="check">✓</span> Loom video walkthrough (5 min)</div>
+      <div class="include-item"><span class="check">✓</span> Works on Notion free plan</div>
+      <div class="include-item"><span class="check">✓</span> Lifetime access + all future updates</div>
+      <div class="include-item"><span class="check">✓</span> Instant delivery — duplicate in 2 minutes</div>
+      <div class="include-item"><span class="check">✓</span> Email support if something doesn't work</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="section-label">Why not just use a SaaS tool?</div>
+  <h2>The math is obvious.</h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Monthly Cost</th>
+        <th>3-Year Cost</th>
+        <th>You Own It?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HoneyBook CRM</td>
+        <td>$19/mo</td>
+        <td>$684</td>
+        <td>❌ No</td>
+      </tr>
+      <tr>
+        <td>Toggl Track</td>
+        <td>$10/mo</td>
+        <td>$360</td>
+        <td>❌ No</td>
+      </tr>
+      <tr>
+        <td>Trello (Business)</td>
+        <td>$10/mo</td>
+        <td>$360</td>
+        <td>❌ No</td>
+      </tr>
+      <tr>
+        <td>FreshBooks</td>
+        <td>$17/mo</td>
+        <td>$612</td>
+        <td>❌ No</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Freelancer's Command Center</td>
+        <td>$0/mo after purchase</td>
+        <td>$12 total</td>
+        <td>✅ Yes, forever</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div style="text-align:center;">
+    <div class="section-label">Pricing</div>
+    <h2>One-time. No subscription. No BS.</h2>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-badge">🚀 Launch Price — Limited Time</div>
+    <div class="pricing-was">Regular price $19</div>
+    <div class="pricing-price"><span>$</span>12</div>
+    <div class="pricing-desc">One-time payment. Lifetime access.</div>
+    <div class="pricing-features">
+      <div class="pricing-feature"><span class="check">✓</span> All 8 pages + databases</div>
+      <div class="pricing-feature"><span class="check">✓</span> Instant Notion duplicate link</div>
+      <div class="pricing-feature"><span class="check">✓</span> Sample data included</div>
+      <div class="pricing-feature"><span class="check">✓</span> Video walkthrough</div>
+      <div class="pricing-feature"><span class="check">✓</span> All future updates</div>
+      <div class="pricing-feature"><span class="check">✓</span> Email support</div>
+    </div>
+    <a href="YOUR_GUMROAD_LINK_HERE" class="btn-primary" style="width:100%; justify-content:center; font-size:1.1rem; padding:1rem;">
+      Get instant access →
+    </a>
+    <div class="guarantee">🔒 Secure checkout via Gumroad · Instant delivery</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-label">Questions</div>
+  <h2>FAQ</h2>
+  <br />
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need a paid Notion plan? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Everything in this template works on Notion's free plan. Notion is free to use at notion.so.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I get the template after buying? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">After purchase you'll receive a PDF with a Notion duplicate link. Click the link, click "Duplicate" in the top-right corner, and it copies to your workspace. Takes about 2 minutes.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I customize it? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes — completely. Once you duplicate it, it's yours to edit, rename, add columns, change colors, or delete anything that doesn't fit your workflow.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is this for solo freelancers or teams? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Designed for solo freelancers but works fine for small teams (2-3 people) using Notion together. Notion's free plan supports up to 10 guests.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I have a problem with the template? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Email me and I'll fix it. I respond within 24 hours. If I genuinely can't resolve your issue, I'll refund you.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Will the launch price stay at $12? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. The launch price is $12 for the first 2 weeks, then it goes to the regular price of $19. Once you buy, the price you paid is locked in forever — no price changes affect existing customers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE — FREE LEAD MAGNET -->
+<section class="section" id="free">
+  <div style="background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:3rem; text-align:center; max-width:600px; margin:0 auto;">
+    <div style="font-size:2.5rem; margin-bottom:1rem;">🎁</div>
+    <div class="section-label" style="justify-content:center; display:flex;">Free template</div>
+    <h2 style="font-size:1.6rem; margin-bottom:0.8rem; border:none; padding:0;">Get the Free Client Tracker</h2>
+    <p style="color:var(--muted); font-size:0.95rem; margin-bottom:2rem; max-width:440px; margin-left:auto; margin-right:auto;">A stripped-down version of the Freelancer's Command Center — Client CRM + Dashboard. Free. No credit card. Just enter your email.</p>
+    <form onsubmit="handleEmailSubmit(event)" style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
+      <input
+        type="email"
+        id="email-capture"
+        placeholder="your@email.com"
+        required
+        style="flex:1; min-width:220px; max-width:320px; padding:0.8rem 1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg3); color:var(--text); font-size:0.95rem; outline:none;"
+      />
+      <button type="submit" style="background:var(--accent); color:white; border:none; padding:0.8rem 1.5rem; border-radius:8px; font-size:0.95rem; font-weight:700; cursor:pointer; white-space:nowrap;">
+        Send me the free template →
+      </button>
+    </form>
+    <p id="email-thanks" style="display:none; color:var(--green); margin-top:1rem; font-size:0.9rem;">✓ Check your inbox — your free template link is on its way!</p>
+    <p style="color:var(--muted); font-size:0.78rem; margin-top:1rem;">No spam. Unsubscribe any time. I'll also send tips on using Notion for your freelance business.</p>
+  </div>
+</section>
+
+<!-- BLOG / RESOURCES -->
+<section class="section">
+  <div class="section-label">Free guides</div>
+  <h2>Notion for Freelancers — Resources</h2>
+  <p class="section-intro">Free guides on building a freelance system in Notion.</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1rem;">
+    <a href="blog/best-notion-templates-for-freelancers.html" style="text-decoration:none;">
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(108,99,255,0.5)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem; margin-bottom:0.6rem;">📋</div>
+        <div style="font-weight:700; font-size:0.95rem; color:var(--text); margin-bottom:0.4rem;">Best Notion Templates for Freelancers (2026)</div>
+        <div style="font-size:0.82rem; color:var(--muted);">Free and paid options reviewed and compared. Find the right template for your workflow.</div>
+      </div>
+    </a>
+    <a href="blog/how-to-track-clients-in-notion.html" style="text-decoration:none;">
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(108,99,255,0.5)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem; margin-bottom:0.6rem;">👤</div>
+        <div style="font-weight:700; font-size:0.95rem; color:var(--text); margin-bottom:0.4rem;">How to Track Clients in Notion (Free Template)</div>
+        <div style="font-size:0.82rem; color:var(--muted);">Step-by-step guide to building a client database in Notion from scratch, plus a free template.</div>
+      </div>
+    </a>
+    <a href="blog/notion-crm-for-freelancers.html" style="text-decoration:none;">
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(108,99,255,0.5)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem; margin-bottom:0.6rem;">🧠</div>
+        <div style="font-weight:700; font-size:0.95rem; color:var(--text); margin-bottom:0.4rem;">Notion CRM for Freelancers — Complete Setup Guide</div>
+        <div style="font-size:0.82rem; color:var(--muted);">How to set up a full CRM in Notion: client database, project tracker, invoice log, and dashboard.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section" style="text-align:center; padding-bottom:5rem;">
+  <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);">Your freelance business deserves a real system.</h2>
+  <p style="color:var(--muted); margin:1rem auto 2.5rem; max-width:500px;">Stop winging it with spreadsheets. 15 minutes of setup and you'll have a system that works for years.</p>
+  <a href="YOUR_GUMROAD_LINK_HERE" class="btn-primary" style="font-size:1.1rem; padding:1rem 2.5rem;">
+    Get The Freelancer's Command Center →
+  </a>
+  <p class="price-note" style="margin-top:0.8rem;"><strong>$12 launch price</strong> · One-time · Instant delivery</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>The Freelancer's Command Center · Built with ❤️ for freelancers</p>
+  <p style="margin-top:0.5rem;"><a href="mailto:YOUR_EMAIL_HERE">Contact</a> · <a href="#">Privacy</a></p>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  // Email capture — replace YOUR_CONVERTKIT_FORM_ID or swap for Mailchimp action URL
+  function handleEmailSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-capture').value;
+    // Option A: ConvertKit inline form POST
+    // fetch('https://app.convertkit.com/forms/YOUR_FORM_ID/subscriptions', {
+    //   method: 'POST', headers: {'Content-Type':'application/json'},
+    //   body: JSON.stringify({ email_address: email })
+    // });
+    // Option B: Mailchimp embedded form — swap the form action= attribute to your Mailchimp URL
+    // For now, just show confirmation (wire up real provider after signup)
+    document.getElementById('email-thanks').style.display = 'block';
+    document.getElementById('email-capture').value = '';
+    // TODO: replace this stub with real ConvertKit/Mailchimp integration
+    console.log('Email captured:', email);
+  }
+</script>
+
+</body>
+</html>

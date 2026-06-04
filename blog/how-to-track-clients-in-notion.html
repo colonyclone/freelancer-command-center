@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Track Clients in Notion (Step-by-Step + Free Template)</title>
+  <meta name="description" content="Learn how to build a client tracking system in Notion from scratch. Includes a free Notion client tracker template you can duplicate in 2 minutes." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; color: #1a1a1a; line-height: 1.8; background: #fff; }
+    a { color: #6c63ff; }
+    h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: 0.5rem; font-family: -apple-system, sans-serif; }
+    h2 { font-size: 1.45rem; margin-top: 3rem; margin-bottom: 0.7rem; border-bottom: 2px solid #eee; padding-bottom: 0.4rem; font-family: -apple-system, sans-serif; }
+    h3 { font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.5rem; font-family: -apple-system, sans-serif; color: #222; }
+    p { margin-bottom: 1.1rem; }
+    ul, ol { padding-left: 1.6rem; margin-bottom: 1.1rem; }
+    li { margin-bottom: 0.4rem; }
+    .meta { color: #777; font-size: 0.88rem; margin-bottom: 2.5rem; font-family: sans-serif; }
+    .toc { background: #f7f7f7; border-left: 4px solid #6c63ff; padding: 1.2rem 1.5rem; margin: 2rem 0; border-radius: 4px; }
+    .toc h4 { margin: 0 0 0.7rem; font-family: sans-serif; font-size: 0.95rem; }
+    .toc ol { margin: 0; padding-left: 1.4rem; font-size: 0.92rem; }
+    .toc li { margin-bottom: 0.3rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .callout { background: #f0effe; border-left: 4px solid #6c63ff; padding: 1rem 1.2rem; border-radius: 4px; margin: 1.5rem 0; font-size: 0.95rem; }
+    .callout strong { color: #4c46c0; }
+    .free-box { background: #f0fff8; border: 1px solid #34d399; border-radius: 12px; padding: 1.8rem; text-align: center; margin: 2.5rem 0; }
+    .free-box h3 { margin-top: 0; color: #065f46; font-size: 1.15rem; }
+    .free-box p { color: #374151; margin-bottom: 1.2rem; }
+    .btn { display: inline-block; background: #6c63ff; color: white; padding: 0.75rem 1.8rem; border-radius: 8px; text-decoration: none; font-family: sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .btn-green { background: #059669; }
+    .cta-box { background: #f7f6ff; border: 1px solid #c4b5fd; border-radius: 12px; padding: 1.8rem; text-align: center; margin: 2.5rem 0; }
+    .cta-box h3 { margin-top: 0; color: #4c1d95; }
+    .cta-box p { color: #374151; margin-bottom: 1.2rem; }
+    blockquote { border-left: 4px solid #6c63ff; margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; background: #f9f8ff; color: #444; font-style: italic; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; font-family: sans-serif; }
+    th { background: #f0f0f0; padding: 0.6rem 0.8rem; text-align: left; }
+    td { padding: 0.6rem 0.8rem; border-bottom: 1px solid #eee; }
+    code { background: #f3f4f6; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
+    .step { counter-increment: steps; display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .step-num { background: #6c63ff; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: sans-serif; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .step-body h4 { font-family: sans-serif; font-size: 1rem; margin-bottom: 0.3rem; }
+    .faq-q { font-weight: bold; font-family: sans-serif; margin-top: 1.5rem; font-size: 0.98rem; }
+    .nav-back { font-family: sans-serif; font-size: 0.85rem; margin-bottom: 2rem; }
+    .nav-back a { text-decoration: none; color: #6c63ff; }
+    .tag { display: inline-block; background: #ede9fe; color: #5b21b6; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-family: sans-serif; margin-right: 0.3rem; }
+    hr { border: none; border-top: 1px solid #eee; margin: 2.5rem 0; }
+  </style>
+</head>
+<body>
+
+<div class="nav-back"><a href="../index.html">← Freelancer's Command Center</a> · <a href="best-notion-templates-for-freelancers.html">All Notion Templates</a></div>
+
+<p><span class="tag">Notion</span><span class="tag">Client Management</span><span class="tag">Freelancing</span></p>
+<h1>How to Track Clients in Notion (Step-by-Step + Free Template)</h1>
+<div class="meta">Updated June 2026 · 9 min read</div>
+
+<p>If you're a freelancer managing clients across your inbox, a spreadsheet, and a pile of sticky notes, you already know the feeling: a client emails asking for an update, and you spend 10 minutes hunting down which project they're on, what you last invoiced them, and whether they've paid.</p>
+
+<p>Notion fixes this. With one well-built database, you can see every client's status, their active projects, unpaid invoices, and contact info in a single view — and it takes about 20 minutes to set up.</p>
+
+<p>This guide walks you through building a client tracker in Notion from scratch. At the end there's a free template you can duplicate if you'd rather skip the build and just start using it.</p>
+
+<div class="toc">
+  <h4>In this guide:</h4>
+  <ol>
+    <li><a href="#why">Why a Notion client tracker beats a spreadsheet</a></li>
+    <li><a href="#properties">The properties every client database needs</a></li>
+    <li><a href="#views">Setting up views that actually help you</a></li>
+    <li><a href="#link">Linking clients to projects and invoices</a></li>
+    <li><a href="#build">Step-by-step: build it in 20 minutes</a></li>
+    <li><a href="#free">Free client tracker template</a></li>
+    <li><a href="#upgrade">The full freelance management system</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ol>
+</div>
+
+<h2 id="why">Why a Notion client tracker beats a spreadsheet</h2>
+
+<p>Spreadsheets are fine for a list of names and emails. But the moment you want to see a client's projects, invoices, and meeting notes in one place — without copy-pasting data between four sheets — they fall apart.</p>
+
+<p>Notion's database system solves this with <strong>relations and rollups</strong>: you can link a client record to their projects, and then their projects to their invoices, and all of that information flows through automatically. Open a client and see everything about them without leaving the page.</p>
+
+<p>The other advantage: Notion is free. A dedicated CRM like HoneyBook costs $19/month. Notion's free plan handles everything a solo freelancer needs.</p>
+
+<blockquote>"I was using Airtable for clients, Trello for projects, and a spreadsheet for invoices. Moving everything to Notion and linking them together saved me at least an hour a week — mostly time I was wasting looking for information I already had."</blockquote>
+
+<h2 id="properties">The properties every client database needs</h2>
+
+<p>When you create a new database in Notion, you start with just a title column. Here's what to add — and why each one matters:</p>
+
+<table>
+  <thead>
+    <tr><th>Property</th><th>Type</th><th>Why it matters</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Client Name</td><td>Title</td><td>The main identifier — make this the company or person name</td></tr>
+    <tr><td>Status</td><td>Select</td><td>Quickly filter active vs. past clients: Lead / Active / Paused / Completed / Churned</td></tr>
+    <tr><td>Email</td><td>Email</td><td>Click to open your mail client with the address pre-filled</td></tr>
+    <tr><td>Phone</td><td>Phone</td><td>Click to call on mobile</td></tr>
+    <tr><td>Industry</td><td>Select</td><td>Helps you notice patterns in your best clients over time</td></tr>
+    <tr><td>Monthly Value</td><td>Number (currency)</td><td>Know exactly what each client is worth to your business</td></tr>
+    <tr><td>Start Date</td><td>Date</td><td>Track client tenure, useful for annual reviews or check-ins</td></tr>
+    <tr><td>Notes</td><td>Text</td><td>Key context: how you met, their communication preferences, etc.</td></tr>
+    <tr><td>Projects</td><td>Relation</td><td>Links to your Projects database — see all their work in one row</td></tr>
+    <tr><td>Invoices</td><td>Relation</td><td>Links to your Invoices database — see what's paid and what's owed</td></tr>
+  </tbody>
+</table>
+
+<p>Don't add every property at once. Start with Status, Email, Monthly Value, and Notes. Add relations later once you've built the Projects and Invoices databases.</p>
+
+<h2 id="views">Setting up views that actually help you</h2>
+
+<p>A Notion database is only as useful as its views. The same client data can be arranged in completely different ways — and having the right view open at the right time is what makes the difference between a system you use and one you abandon.</p>
+
+<p>Here are the four views to set up in your client tracker:</p>
+
+<h3>1. All Clients (default table view)</h3>
+<p>Your master list. Show all properties. Sort by Status, then by Monthly Value descending. This is what you open when you need to look something up about a specific client.</p>
+
+<h3>2. Active Clients (filtered table)</h3>
+<p>Filter: <code>Status = Active</code>. This is your working view — the clients you're currently serving. Keep this one bookmarked. When a client project ends, change their status to Completed and they disappear from this view automatically.</p>
+
+<h3>3. By Status (grouped table)</h3>
+<p>Group by: <code>Status</code>. See all your clients organized into groups: Leads, Active, Paused, Completed. Useful for the big-picture review of your client base — monthly or quarterly.</p>
+
+<h3>4. High Value (sorted table)</h3>
+<p>Sort by: <code>Monthly Value</code> descending. No filter. This tells you at a glance who your most valuable clients are, which matters when you're deciding where to invest your energy and who to prioritize during busy periods.</p>
+
+<h2 id="link">Linking clients to projects and invoices</h2>
+
+<p>This is where Notion's power really shows. Once you've built a basic Projects database and an Invoices database, you can link them to your Clients database using <strong>relation properties</strong>.</p>
+
+<p>Here's how it works: in your Clients database, add a property of type <code>Relation</code> and point it at your Projects database. Notion creates a two-way link — when you link a project to a client, the client record shows that project, and the project record shows the client.</p>
+
+<p>Add a <code>Rollup</code> property on top of that relation to do calculations across linked records — for example, summing all invoice amounts linked to a client to show their total revenue earned.</p>
+
+<p>The result: open any client record and you see:</p>
+<ul>
+  <li>Their active and past projects (with status and due dates)</li>
+  <li>All invoices (with paid/unpaid status)</li>
+  <li>Total revenue earned (automatically calculated)</li>
+</ul>
+
+<p>You never have to switch databases to understand a client's full picture.</p>
+
+<h2 id="build">Step-by-step: build your client tracker in 20 minutes</h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-body">
+    <h4>Create a new page in Notion</h4>
+    <p>Click <strong>+ New page</strong> in your sidebar. Title it "Clients". Click the table icon under "Database" to create a new full-page table database. This is your client tracker.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-body">
+    <h4>Add your properties</h4>
+    <p>Click the <strong>+</strong> to the right of the last column header to add each property. Add in order: Status (Select), Email (Email), Phone (Phone), Industry (Select), Monthly Value (Number — format as currency), Start Date (Date), Notes (Text). Don't add relations yet.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-body">
+    <h4>Set up your Status options</h4>
+    <p>Click the Status property header → Edit property. Add these options with colors: Lead (gray), Active (green), Paused (yellow), Completed (blue), Churned (red). Color-coding makes your Kanban and grouped views instantly readable.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-body">
+    <h4>Add 3–5 real clients</h4>
+    <p>Don't leave it empty — populate it with your actual current clients now. Even just name + status + email. The system only becomes useful when it has real data. Delete the sample "Untitled" row Notion creates by default.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">5</div>
+  <div class="step-body">
+    <h4>Create your views</h4>
+    <p>Click <strong>+ Add a view</strong> at the top left. Create the four views described in the previous section: All Clients (table), Active Clients (filtered table), By Status (grouped), High Value (sorted). Name them clearly.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">6</div>
+  <div class="step-body">
+    <h4>Bookmark the Active Clients view</h4>
+    <p>This is your daily view. Right-click the page in your sidebar and choose <strong>Add to Favorites</strong>. Switch to your Active Clients view before bookmarking so it opens on that view by default.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">7</div>
+  <div class="step-body">
+    <h4>Add relations (once you have a Projects database)</h4>
+    <p>Create a Projects database in a new Notion page. Then come back to Clients, add a new property → Relation → select Projects. Do the same for an Invoices database. Now open any client row and you can link their projects directly from inside the client record.</p>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Pro tip:</strong> Open a client's record (click on the row) and use the full-page view to write notes from calls, attach files, and see their linked projects. Notion page records are full documents — your client tracker doubles as a client note-taking system.
+</div>
+
+<h2 id="free">Free client tracker template</h2>
+
+<div class="free-box">
+  <h3>🎁 Free Notion Client Tracker</h3>
+  <p>Don't want to build it from scratch? Duplicate the free version in 2 minutes. Includes the Client CRM database with all properties pre-built, the four views set up, and sample data so you can see how it works before clearing it out.</p>
+  <a href="FREE_TEMPLATE_LINK_HERE" class="btn btn-green">Get the free template →</a>
+  <p style="margin-top:0.8rem; font-size:0.82rem; color:#6b7280;">No credit card. Just click Duplicate in Notion.</p>
+</div>
+
+<h2 id="upgrade">The full freelance management system</h2>
+
+<p>The free template is the Client CRM page on its own. If you want everything connected — clients linked to projects, projects linked to tasks, tasks linked to invoices, with a dashboard that shows it all at once — that's the <strong>Freelancer's Command Center</strong>.</p>
+
+<p>It's 8 pages, all linked, one-time $12 (launch price). Here's what it adds on top of the free tracker:</p>
+
+<ul>
+  <li><strong>Project Tracker</strong> — Kanban board, due dates, budgets, overdue flags, linked to clients</li>
+  <li><strong>Task Manager</strong> — Break projects into tasks, filter by "due this week"</li>
+  <li><strong>Invoice Tracker</strong> — Every invoice linked to a client and project, with paid/overdue status</li>
+  <li><strong>Time Log</strong> — Billable hours by project, linked to clients</li>
+  <li><strong>Dashboard</strong> — One view showing active clients, live projects, outstanding invoices, and this week's tasks</li>
+  <li><strong>Meeting Notes template</strong> and <strong>Client Onboarding Checklist</strong></li>
+</ul>
+
+<div class="cta-box">
+  <h3>The Freelancer's Command Center</h3>
+  <p>8 pages. Fully linked. Works on Notion's free plan. Launch price $12 → regular $19.</p>
+  <a href="PAID_TEMPLATE_LINK_HERE" class="btn">Get it for $12 →</a>
+  <p style="margin-top:0.8rem; font-size:0.82rem; color:#6b7280;">One-time payment · Instant Notion duplicate · Lifetime access</p>
+</div>
+
+<h2 id="faq">FAQ</h2>
+
+<div class="faq-q">Do I need a paid Notion plan?</div>
+<p>No. Notion's free plan is sufficient for a solo freelancer's client tracker. The only limitation on the free plan is that you can't invite guests to edit (only view), and you're limited to 10 MB per file upload. Neither affects this use case.</p>
+
+<div class="faq-q">Can I use this on mobile?</div>
+<p>Yes. Notion has iOS and Android apps. The mobile experience is decent for viewing and quick updates. Heavy data entry (adding many new clients or properties) is easier on desktop.</p>
+
+<div class="faq-q">How do I migrate from my current spreadsheet?</div>
+<p>Notion supports CSV import. Export your spreadsheet as a CSV, then in Notion: New page → Import → CSV. It creates a database from your CSV columns automatically. You'll need to convert some columns to the right property types (e.g., make the Status column a Select property), but the data transfers cleanly.</p>
+
+<div class="faq-q">Can I share my client database with a VA or team member?</div>
+<p>Yes. On Notion's free plan you can share a page with up to 10 guests (view or edit access). Paid plans remove this limit. For most solo freelancers with a part-time VA, the free plan works fine.</p>
+
+<div class="faq-q">What if I want clients to see their own project info?</div>
+<p>That's what the <a href="PAID_TEMPLATE_LINK_HERE">Client Welcome Kit template</a> is for. It's a separate shareable Notion page — a client portal — that you duplicate per client and share a link to. The client sees their project milestones, file hub, and communication guidelines without accessing your internal database.</p>
+
+<div class="faq-q">Is this better than Dubsado or HoneyBook?</div>
+<p>Depends on what you need. HoneyBook and Dubsado automate things Notion can't: sending contracts, collecting e-signatures, automated invoice reminders, and payment processing. If you need those automations, they're worth the $19-20/month. If you mainly need clarity and organization — and you already use separate tools for contracts and payments — Notion is more flexible and free.</p>
+
+<hr />
+<p style="color:#888; font-size:0.83rem;">Written by the creator of the Freelancer's Command Center Notion template. All templates linked on this page are products I built.</p>
+
+</body>
+</html>
